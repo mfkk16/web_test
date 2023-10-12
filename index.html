@@ -10,22 +10,15 @@
 <script>
 
     function buttonClick() {
-        console.log("button click");
-        try{
-
-
-
-
-            const message = "value";
-            if (window.flutter_inappwebview.callHandler) {
-              window.flutter_inappwebview.callHandler('handlerName', message);
-            } else {
-               window.flutter_inappwebview._callHandler('handlerName', setTimeout(function(){}), JSON.stringify([message]));
-            }
-
-
-            
-        } catch(err){console.log(error);}
+         console.log("button click");
+        try {
+            window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
+                window.flutter_inappwebview.callHandler('handlerFunction', "got success message");
+                console.log("success");
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 </script>
 
