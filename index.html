@@ -8,21 +8,27 @@
     <title>Test</title>
 </head>
 <script>
-    var isFlutterInAppWebViewReady = false;
-    window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
-        isFlutterInAppWebViewReady = true;
-    });
 
     function buttonClick() {
         console.log("button click");
-        if (isFlutterInAppWebViewReady) {
-            try {
-                window.callHandler('FlutterFunction', "got success message");
-                console.log("success");
-            } catch (error) {
-                console.log(error);
+        try{
+
+
+
+
+            const message = "value";
+            if (window.flutter_inappwebview.callHandler) {
+              window.flutter_inappwebview.callHandler('handlerName', message);
+            } else {
+               window.flutter_inappwebview._callHandler('handlerName', setTimeout(function(){}), JSON.stringify([message]));
             }
-        }
+
+
+
+
+
+            
+        } catch(err){console.log(error);}
     }
 </script>
 
