@@ -16,15 +16,22 @@
 
 
 
-            const message = "value";
-            if (window.flutter_inappwebview.callHandler) {
-              window.flutter_inappwebview.callHandler('handlerName', message);
-            } else {
-               window.flutter_inappwebview._callHandler('handlerName', setTimeout(function(){}), JSON.stringify([message]));
+            // const message = "value";
+            // if (window.flutter_inappwebview.callHandler) {
+            //   window.flutter_inappwebview.callHandler('handlerName', message);
+            // } else {
+            //    window.flutter_inappwebview._callHandler('handlerName', setTimeout(function(){}), JSON.stringify([message]));
+            // }
+
+
+var isAppReady = false;
+            window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
+                isAppReady = true;
+            });
+
+            if (isAppReady) {
+                window.flutter_inappwebview.callHandler('FlutterFunction', "outData");
             }
-
-
-
 
 
             
